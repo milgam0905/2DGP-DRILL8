@@ -130,7 +130,7 @@ class Boy:
         self.SLEEP = Sleep(self) #새로운 sleep 상태 추가
         self.RUN = Run(self) #새로운 run 상태 추가
         self.AUTORUN = AutoRun(self) #새로운 autorun 상태 추가
-        self.state_machine = StateMachine(self.IDLE,
+        self.state_machine = StateMachine(self.AUTORUN,
                                           {
                 self.SLEEP: {space_down: self.IDLE},
                 self.IDLE: {time_out: self.SLEEP, right_down: self.RUN, left_down: self.RUN, right_up: self.RUN, left_up: self.RUN},
