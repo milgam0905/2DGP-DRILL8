@@ -31,6 +31,7 @@ class AutoRun:
 
     def enter(self, e):
         self.boy.dir = 1
+        self.boy.face_dir = 1
 
     def exit(self, e):
         pass
@@ -40,8 +41,10 @@ class AutoRun:
 
         if self.boy.x > 750:
             self.boy.dir = -1
+            self.boy.face_dir = -1
         elif self.boy.x < 50:
             self.boy.dir = 1
+            self.boy.face_dir = 1
         move = self.boy.dir * 10
         self.boy.x += move
 
