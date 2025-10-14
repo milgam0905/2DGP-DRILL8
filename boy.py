@@ -30,10 +30,7 @@ class AutoRun:
         self.boy = boy
 
     def enter(self, e):
-        if right_down(e) or left_up(e):
-            self.boy.dir = self.boy.face_dir = 1
-        elif left_down(e) or right_up(e):
-            self.boy.dir = self.boy.face_dir = -1
+        self.boy.dir = 1
 
     def exit(self, e):
         pass
@@ -132,6 +129,7 @@ class Boy:
         self.IDLE = Idle(self)
         self.SLEEP = Sleep(self) #새로운 sleep 상태 추가
         self.RUN = Run(self) #새로운 run 상태 추가
+        self.AUTORUN = AutoRun(self) #새로운 autorun 상태 추가
         self.state_machine = StateMachine(self.IDLE,
                                           {
                 self.SLEEP: {space_down: self.IDLE},
