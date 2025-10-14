@@ -37,11 +37,12 @@ class AutoRun:
 
     def do(self):
         self.boy.frame = (self.boy.frame + 1) % 8
-        move = 10
+
         if self.boy.x > 750:
-            move =  -10
+            self.boy.dir = -1
         elif self.boy.x < 50:
-            move = 10
+            self.boy.dir = 1
+        move = self.boy.dir * 10
         self.boy.x += move
 
     def draw(self):
