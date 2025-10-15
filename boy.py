@@ -41,6 +41,9 @@ class AutoRun:
 
     def do(self):
         self.boy.frame = (self.boy.frame + 1) % 8
+        if get_time() - self.boy.run_time > 5:
+            #         5초 경과, state machine에게 TIME_OUT 이벤트를 보냄
+            self.boy.state_machine.handle_state_event(('TIME_OUT', None))
 
         if self.boy.x > 750:
             self.boy.dir = -1
@@ -147,7 +150,7 @@ class Boy:
                 self.SLEEP: {space_down: self.IDLE},
                 self.IDLE: {time_out: self.SLEEP, right_down: self.RUN, left_down: self.RUN, right_up: self.RUN, left_up: self.RUN, akey_down: self.AUTORUN,},
                 self.RUN: {right_down: self.IDLE, left_down: self.IDLE, right_up: self.IDLE, left_up: self.IDLE},
-                self.AUTORUN: {}
+                self.AUTORUN: {time_out: self.IDLE}
             }
         )
 
